@@ -2,6 +2,7 @@ const path = require("path");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+// const SpritePlugin = require(`svg-sprite-loader/plugin`);
 
 module.exports = {
   entry: "./src/index.js",
@@ -23,6 +24,14 @@ module.exports = {
       {
         test: /\.(png|jpg)$/,
         type: "asset/resource",
+      },
+      {
+        test: /\.svg$/,
+        use: [{ loader: "svg-sprite-loader", options: {} }, "svgo-loader"], // Comment this line out and uncomment the other three lines in this file to use extract mode.
+        // use: [
+        //   { loader: "svg-sprite-loader", options: { extract: true } },
+        //   "svgo-loader",
+        // ],
       },
       {
         test: /\.scss$/,
@@ -54,5 +63,6 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: "./src/index.ejs",
     }),
+    // new SpritePlugin(),
   ],
 };

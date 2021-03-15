@@ -29,6 +29,7 @@ DEBUG = int(os.environ.get("DEBUG", default=1))
 ALLOWED_HOSTS = [
     "localhost",
     "127.0.0.1",
+    "atummillo-django-template.herokuapp.com",
 ]
 
 # Application definition

@@ -3,9 +3,12 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 
 module.exports = {
-  entry: "./src/index.js",
+  // For testing prod build on local machince
+  // while working on webpack config.
+  // entry: "./src/assets/js/index.js",
+  entry: "./assets/js/index.js",
   output: {
-    filename: "bundle.[contenthash].js",
+    filename: "bundle.js",
     path: path.resolve(__dirname, "./dist"),
     publicPath: "",
   },
@@ -14,7 +17,14 @@ module.exports = {
     rules: [
       {
         test: /\.(png|jpg)$/,
-        type: "asset/resource",
+        loader: "file-loader",
+        options: {
+          name: "[name].[ext]",
+        },
+      },
+      {
+        test: /\.svg$/,
+        use: [{ loader: "svg-sprite-loader", options: {} }, "svgo-loader"],
       },
       {
         test: /\.scss$/,
@@ -47,13 +57,10 @@ module.exports = {
   },
   plugins: [
     new MiniCssExtractPlugin({
-      filename: "style.[contenthash].css",
+      filename: "style.css",
     }),
     new CleanWebpackPlugin({
-      cleanOnceBeforeBuildPatterns: [
-        "**/*",
-        path.join(process.cwd(), "build/**/*"),
-      ],
+      cleanOnceBeforeBuildPatterns: ["**/*"],
     }),
   ],
 };

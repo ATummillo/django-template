@@ -1,0 +1,26 @@
+:root {
+  // RESPONSIVE BREAKPOINTS
+  --bp-largest: 87.5em; //1400px
+  --bp-large: 62.5em; //1000px
+  --bp-medium: 50em; //800px
+  --bp-small: 37.5em; //600px
+}
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+html {
+  box-sizing: border-box;
+  background-color: var(--color-primary-grey);
+  font-size: 62.5%; // 10px/16px = 62.5% -> 1rem = 10px
+  // font-size: 50%; // This makes the site work on macbook 13" screen -> 1rem = 8px
+}
+
+body {
+  color: blue;
+}

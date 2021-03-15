@@ -2,10 +2,9 @@ const path = require("path");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
-// const SpritePlugin = require(`svg-sprite-loader/plugin`);
 
 module.exports = {
-  entry: "./src/index.js",
+  entry: "./src/assets/js/index.js",
   output: {
     filename: "bundle.js",
     path: path.resolve(__dirname, "./dist"),
@@ -15,7 +14,7 @@ module.exports = {
   devServer: {
     contentBase: path.resolve(__dirname, "./dist"),
     index: "index.html",
-    port: 9000,
+    port: 8000,
     writeToDisk: true,
   },
   devtool: "source-map",
@@ -23,7 +22,10 @@ module.exports = {
     rules: [
       {
         test: /\.(png|jpg)$/,
-        type: "asset/resource",
+        loader: "file-loader",
+        options: {
+          name: "[name].[ext]",
+        },
       },
       {
         test: /\.svg$/,
@@ -63,6 +65,5 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: "./src/index.ejs",
     }),
-    // new SpritePlugin(),
   ],
 };

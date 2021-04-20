@@ -7,14 +7,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="shortcut icon" type="image/png" href="{% static 'logo.png' %}" />
     <link rel="stylesheet" href="{% static 'style.css' %}">
-    <title>Boilerplate</title>
+    <title>Django Template</title>
   </head>
   <body>
-    <p>Hello World!</p>
+    <p>Hello World! This is Anthony Tummillo's Django project template.</p>
 
-    <script>
+    {% comment %} <script>
       var CSRF_TOKEN = "{{ csrf_token }}";
-    </script>
+    </script> {% endcomment %}
     <script src="{% static 'bundle.js' %}"></script>
   </body>
 </html>

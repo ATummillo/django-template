@@ -11,6 +11,8 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
 import os
+
+# import dj_database_url // For connecting to databases
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -30,6 +32,8 @@ ALLOWED_HOSTS = [
     "localhost",
     "127.0.0.1",
     "atummillo-django-template.herokuapp.com",
+    # "<custom_domain>.com",
+    # "www.<custom_domain>.com",
 ]
 
 # Application definition
@@ -81,9 +85,26 @@ WSGI_APPLICATION = "app.wsgi.application"
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
+        "NAME": "/vol/db.sqlite3",
     }
 }
+
+# For use with external databases
+# DATABASES = {
+#     "default": {
+#         "ENGINE": "django.db.backends.postgresql",
+#         "HOST": os.environ.get("DB_HOST"),
+#         "NAME": os.environ.get("DB_NAME"),
+#         "USER": os.environ.get("DB_USER"),
+#         "PASSWORD": os.environ.get("DB_PASS"),
+#     }
+# }
+
+# if not DEBUG:
+#     DATABASES["default"] = dj_database_url.config(
+#         conn_max_age=600,
+#         ssl_require=True,
+#     )
 
 
 # Password validation
@@ -124,5 +145,5 @@ USE_TZ = True
 
 STATIC_ROOT = "/vol/web/static"
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
-STATICFILES_DIRS = [Path.joinpath(BASE_DIR, "dist")]
+STATICFILES_DIRS = ["/vol/dist"]
 STATIC_URL = "/static/"

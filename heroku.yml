@@ -1,3 +1,5 @@
+# You only need this file if you will be having heroku build the images for you.
+# I suggest building your images locally and then pushing them to registry.heroku.com for deployment
 build:
   docker:
     web: Dockerfile.prod
